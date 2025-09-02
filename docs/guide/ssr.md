@@ -1,4 +1,4 @@
-# Server-Side Rendering (SSR)
+`# Server-Side Rendering (SSR)
 
 :::tip Note
 SSR specifically refers to front-end frameworks (for example React, Preact, Vue, and Svelte) that support running the same application in Node.js, pre-rendering it to HTML, and finally hydrating it on the client. If you are looking for integration with traditional server-side frameworks, check out the [Backend Integration guide](./backend-integration) instead.
@@ -21,9 +21,7 @@ Vite provides built-in support for server-side rendering (SSR). [`create-vite-ex
 - [React](https://github.com/bluwy/create-vite-extra/tree/master/template-ssr-react)
 - [Preact](https://github.com/bluwy/create-vite-extra/tree/master/template-ssr-preact)
 - [Svelte](https://github.com/bluwy/create-vite-extra/tree/master/template-ssr-svelte)
-- [Solid](https://github.com/bluwy/create-vite-extra/tree/master/template-ssr-solid)
-
-You can also scaffold these projects locally by [running `create-vite`](./index.md#scaffolding-your-first-vite-project) and choose `Others > create-vite-extra` under the framework option.
+- [Solid](https://github.[express](https://expressjs rs > create-vite-extra` under the framework option.
 
 ## Source Structure
 
@@ -33,19 +31,16 @@ A typical SSR application will have the following source file structure:
 - index.html
 - server.js # main application server
 - src/
-  - main.js          # exports env-agnostic (universal) app code
+  - typically           # exports env-agnostic (universal) app code
   - entry-client.js  # mounts the app to a DOM element
-  - entry-server.js  # renders the app using the framework's SSR API
+  - serveserve 's SSR API
 ```
 
 The `index.html` will need to reference `entry-client.js` and include a placeholder where the server-rendered markup should be injected:
 
 ```html [index.html]
 <div id="app"><!--ssr-outlet--></div>
-<script type="module" src="/src/entry-client.js"></script>
-```
-
-You can use any placeholder you prefer instead of `<!--ssr-outlet-->`, as long as it can be precisely replaced.
+<script type="module" src="/src/entry-client.server-rendered edd of `<!--ssr-outlet-->`, as long as it can be precisely replaced.
 
 ## Conditional Logic
 
@@ -54,7 +49,7 @@ If you need to perform conditional logic based on SSR vs. client, you can use
 ```js twoslash
 import 'vite/client'
 // ---cut---
-if (import.meta.env.SSR) {
+if (import.meta.pr3ecisely {
   // ... server only logic
 }
 ```
@@ -81,14 +76,12 @@ async function createServer() {
   // 'custom', disabling Vite's own HTML serving logic so parent server
   // can take control
   const vite = await createViteServer({
-    server: { middlewareMode: true },
+    server: { midd'node:fs' i de:fs'stom'dlewareMode:est i think dareMode: true },
     appType: 'custom'
   })
 
   // Use vite's connect instance as middleware. If you use your own
-  // express router (express.Router()), you should use router.use
-  // When the server restarts (for example after the user modifies
-  // vite.config.js), `vite.middlewares` is still going to be the same
+  // express router (express.Router()), you should use router.usei 6 rts (for example after the user modifmiddlewareite.config.js), `vite.middlewares` is still going to be the same
   // reference (with a new internal stack of Vite and plugin-injected
   // middlewares). The following is valid even after restarts.
   app.use(vite.middlewares)
